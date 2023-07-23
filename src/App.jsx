@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Navbar from './components/NavBar';
 import { useState } from 'react';
 import NoteMaker from './components/NoteMaker';
+import AddNote from './components/AddNote';
 
 
 function App() {
@@ -19,11 +20,13 @@ function App() {
   });
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-      <NoteMaker />
-    </ThemeProvider>
+    <div style={{backgroundColor: "black", minHeight:"100vh"}}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+        <AddNote />
+      </ThemeProvider>
+    </div>
   );
 }
 

@@ -7,11 +7,16 @@ function NoteMaker() {
 
     const editor = useRef(null)
     const [content, setContent] = useState("")
+
+    
+
     return (
-        <Box>
-            <Card style={{width:"50vw", height:"50vh"}} variant="outlined">
+        <Box style={{display:"flex", }}>
+            <Card style={{padding:"0",width:"30vw", height:"60vh", overflow:"auto", resize:"both"}} variant="outlined">
                 <CardContent>
                     <JoditEditor
+                        style={{ width: "100%", height: "400px", border: "1px solid #ccc" }}
+                        margin="0"
                         ref={editor}
                         value={content}
                         onChange={(newContent) => setContent(newContent)}
