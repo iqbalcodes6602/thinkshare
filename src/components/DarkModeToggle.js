@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconButton } from '@material-ui/core';
-import Brightness4Icon from '@material-ui/icons/Brightness4';
-import Brightness7Icon from '@material-ui/icons/Brightness7';
+import { Brightness4, Brightness7 } from '@mui/icons-material';
+
 
 const DarkModeToggle = ({ darkMode, setDarkMode }) => {
     const handleToggle = () => {
@@ -10,7 +10,7 @@ const DarkModeToggle = ({ darkMode, setDarkMode }) => {
 
     return (
         <IconButton onClick={handleToggle} color="inherit">
-            {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+            {darkMode ? <Brightness7 /> : <Brightness4 />}
         </IconButton>
     );
 };
