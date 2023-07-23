@@ -1,12 +1,9 @@
 import './App.css';
+import { useState } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-
 import Navbar from './components/NavBar';
-import { useState } from 'react';
-import NoteMaker from './components/NoteMaker';
 import AddNote from './components/AddNote';
-
 
 function App() {
 
@@ -20,7 +17,7 @@ function App() {
   });
 
   return (
-    <div style={{backgroundColor: "black", minHeight:"100vh"}}>
+    <div style={{backgroundColor: "black", minHeight:"100vh", minWidth:"100vw"}}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
