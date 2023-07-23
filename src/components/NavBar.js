@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Typography, Toolbar } from '@mui/material';
 import DarkModeToggle from './DarkModeToggle';
 
 const Navbar = ({ darkMode, setDarkMode }) => {

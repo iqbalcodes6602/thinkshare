@@ -1,18 +1,18 @@
 import './App.css';
-import JoditEditor from "jodit-react"
-import { useRef, useState } from "react"
-import { CssBaseline, ThemeProvider, createMuiTheme } from '@material-ui/core';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
 import Navbar from './components/NavBar';
+import { useState } from 'react';
+import NoteMaker from './components/NoteMaker';
 
 
 function App() {
 
-  const editor = useRef(null)
-  const [content, setContent] = useState("")
 
   const [darkMode, setDarkMode] = useState(false);
   // Define the theme for dark mode and light mode
-  const theme = createMuiTheme({
+  const theme = createTheme({
     palette: {
       type: darkMode ? 'dark' : 'light',
     },
@@ -22,13 +22,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-      <div className="App">
-        <JoditEditor
-          ref={editor}
-          value={content}
-          onChange={(newContent) => setContent(newContent)}
-        />
-      </div>
+      <NoteMaker />
     </ThemeProvider>
   );
 }
