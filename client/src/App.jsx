@@ -27,7 +27,6 @@ function App() {
           <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
           <AddNote />
         </ThemeProvider>
-        hellossj
       </div>
     </>
   );
