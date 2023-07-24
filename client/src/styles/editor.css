@@ -16,7 +16,7 @@
     min-width: 100%;
     box-shadow: 0 0 5px 0 rgb(115 104 104 / 50%);
     background-color: white;
-    border-radius: 0.1rem;
+    border-radius: 0 0 0.2rem 0.2rem;
 }
 
 .container .ql-container.ql-snow {
@@ -34,7 +34,8 @@
     background-color: #F3F3F3;
     border: none;
     box-shadow: 0 0 5px 0 rgb(115 104 104 / 50%);
-    border-radius:  0.1rem 0.1rem 0 0;
+    border-radius:  0.2rem 0.2rem 0 0;
+    position: relative;
 }
 
 @page {

@@ -11,8 +11,17 @@ function NoteMaker(props) {
         wrapper.innerHTML = ""
         const editor = document.createElement('div')
         wrapper.append(editor)
-        new Quill(editor, { theme: "snow" })
+        new Quill(editor, { theme: "snow", modules: { toolbar: TOOLBAR_OPTIONS }, })
     }, [])
+
+    const TOOLBAR_OPTIONS = [
+        [{ header: [1, 2, 3, 4, 5, 6, false] }, { font: [] }],
+        [{ list: "ordered" }, { list: "bullet" }, { align: [] }],
+        ["bold", "italic", "underline"],
+        [{ color: [] }, { background: [] }],
+        [{ script: "sub" }, { script: "super" }],
+        ["image", "blockquote", "code-block"],
+    ]
 
     return (
         <Draggable
@@ -24,8 +33,10 @@ function NoteMaker(props) {
         >
             <div style={{ padding: "0", width: "auto", height: "60vh", position: "absolute" }} >
                 <DragIndicator style={{ cursor: "all-scroll" }} className='draggingHandle' />
+
                 <Delete style={{ cursor: "pointer" }} onClick={() => props.handleDelete(props.note.id)}>Delete</Delete>
-                <div className="container" ref={wrapperRef} style={{ width: "auto", height: "auto", margin: "10px" }}></div>
+
+                <div className="container" ref={wrapperRef} style={{ width: "auto", height: "auto", position: "absolute" }}></div>
             </div>
         </Draggable>
     )
