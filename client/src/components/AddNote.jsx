@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import NoteMaker from './NoteMaker';
+import { Add, Remove } from '@mui/icons-material';
 
 const AddNote = () => {
     const [divCount, setDivCount] = useState(0);
@@ -20,52 +21,27 @@ const AddNote = () => {
         return divs;
     };
 
-    const [zoomLevel, setZoomLevel] = useState(1);
+    const [zoomLevel, setZoomLevel] = useState(1); // 1 is the default scale (no zoom)
 
-    const handleZoom = (delta) => {
-        setZoomLevel((prevZoom) => prevZoom + delta);
+    const handleZoomIn = () => {
+        setZoomLevel(prevZoom => prevZoom + 0.1); // Increase the zoom level by 0.1
     };
 
-    const handleScroll = (e) => {
-        e.preventDefault(); // Prevent default scrolling behavior
-        const delta = e.deltaY > 0 ? 0.1 : -0.1;
-        handleZoom(delta);
+    const handleZoomOut = () => {
+        setZoomLevel(prevZoom => Math.max(0.2, prevZoom - 0.1)); // Decrease the zoom level by 0.1, but minimum scale is 0.2
     };
-
-    const handleKeyDown = (e) => {
-        if (e.ctrlKey) {
-            e.preventDefault(); // Prevent default Ctrl+ArrowUp/ArrowDown behavior
-            if (e.key === 'ArrowUp') {
-                handleZoom(0.1);
-            } else if (e.key === 'ArrowDown') {
-                handleZoom(-0.1);
-            }
-        }
-    };
-
-    useEffect(() => {
-        // Attach event listeners when the component mounts
-        document.addEventListener('wheel', handleScroll, { passive: false });
-        document.addEventListener('keydown', handleKeyDown);
-
-        // Clean up event listeners when the component unmounts
-        return () => {
-            document.removeEventListener('wheel', handleScroll);
-            document.removeEventListener('keydown', handleKeyDown);
-        };
-    }, []);
 
     return (
-        <div
-            tabIndex="0"
-            style={{
-                transform: `scale(${zoomLevel})`,
-                transformOrigin: 'top left', // Keep the zoom centered at the top left corner
-            }}
-        >
-            <button onClick={handleButtonClick}>Generate Div</button>
-            {generateDivs()}
-        </div>
+        <>
+            <button onClick={handleZoomIn}><Add /></button>{parseInt(zoomLevel*100)} %
+            <button onClick={handleZoomOut}><Remove /></button>
+            <div
+                style={{ transform: `scale(${zoomLevel})`, transformOrigin: '0 0' }}
+            >
+                <button onClick={handleButtonClick}>Generate Div</button>
+                {generateDivs()}
+            </div>
+        </>
     );
 };
 
