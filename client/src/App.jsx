@@ -20,14 +20,16 @@ function App() {
 
 
   return (
-    <div style={{ minHeight: "100vh", minWidth: "100vw", backgroundColor:"#ddd", overflow:"hidden" }}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-        <AddNote />
-      </ThemeProvider>
-    hellossj
-    </div>
+    <>
+      <div style={{ minHeight: "100vh", minWidth: "80vw", backgroundColor: "#ddd", overflow: "hidden" }}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+          <AddNote />
+        </ThemeProvider>
+        hellossj
+      </div>
+    </>
   );
 }
 
