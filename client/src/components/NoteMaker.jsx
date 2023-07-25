@@ -1,10 +1,20 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import Draggable from 'react-draggable';
 import { DragIndicator, Delete } from '@mui/icons-material';
 import Quill from 'quill'
 import '../styles/editor.css'
+import io from 'socket.io-client'
 
 function NoteMaker(props) {
+
+    useEffect(() => {
+        const socket = io("http://localhost:3001")
+
+        return () => {
+            socket.disconnect()
+        }
+    }, [])
+
     const wrapperRef = useCallback(wrapper => {
         if (wrapper == null) return
 
