@@ -9,6 +9,7 @@ function NoteMaker(props) {
     const [socket, setSocket] = useState()
     const [quill, setQuill] = useState()
 
+    // make connection to socketio backend
     useEffect(() => {
         const s = io("http://localhost:3001")
         setSocket(s)
@@ -18,6 +19,7 @@ function NoteMaker(props) {
         }
     }, [])
    
+    // send changes done to backend through socketio
     useEffect(() => {
         if(socket == null || quill == null) return
 
@@ -32,6 +34,22 @@ function NoteMaker(props) {
         }
     }, [socket, quill])
 
+
+    // recieve changes from backend through socket io and upate the note
+    useEffect(() => {
+        if(socket == null || quill == null) return
+
+        const handler =  (delta) => {
+            quill.updateContents(delta)
+        }
+        socket.on('recieve-changes', handler)
+
+        return () => {
+            socket.off('recieve-changes', handler)
+        }
+    }, [socket, quill])
+
+    // function to generate a new note
     const wrapperRef = useCallback(wrapper => {
         if (wrapper == null) return
 
