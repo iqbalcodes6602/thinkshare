@@ -6,6 +6,7 @@ import '../styles/editor.css'
 import io from 'socket.io-client'
 import { useParams } from 'react-router-dom';
 
+const SAVE_INTERNAL_MS = 2000
 function NoteMaker(props) {
     const { id: documentId } = useParams()
     const [socket, setSocket] = useState()
@@ -61,7 +62,20 @@ function NoteMaker(props) {
             socket.off('recieve-changes', handler)
         }
     }, [socket, quill])
-    
+
+
+    // save the data to db
+    useEffect(()=>{
+        if(socket == null || quill==null) return
+        const interval = setInterval(() => {
+            socket.emit('save-document', quill.getContents())
+        }, SAVE_INTERNAL_MS);
+
+        return () => {
+            clearInterval(interval)
+        }
+    },[socket,quill])
+
 
     // function to generate a new note
     const wrapperRef = useCallback(wrapper => {
