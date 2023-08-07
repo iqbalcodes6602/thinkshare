@@ -4,10 +4,23 @@ import { DragIndicator, Delete } from '@mui/icons-material';
 import Quill from 'quill'
 import '../styles/editor.css'
 import io from 'socket.io-client'
+import { useParams } from 'react-router-dom';
 
 function NoteMaker(props) {
+    const { id: documentId } = useParams()
     const [socket, setSocket] = useState()
     const [quill, setQuill] = useState()
+
+    useEffect(() => {
+        if (socket == null || quill == null) return
+
+        socket.once("load-document", document => {
+            quill.setContents(document)
+            quill.enable()
+        })
+
+        socket.emit("get-document", documentId)
+    }, [socket, quill, documentId])
 
     // make connection to socketio backend
     useEffect(() => {
@@ -18,12 +31,12 @@ function NoteMaker(props) {
             s.disconnect()
         }
     }, [])
-   
+
     // send changes done to backend through socketio
     useEffect(() => {
-        if(socket == null || quill == null) return
+        if (socket == null || quill == null) return
 
-        const handler =  (delta, oldDelta, source) => {
+        const handler = (delta, oldDelta, source) => {
             if (source !== 'user') return
             socket.emit("send-changes", delta)
         }
@@ -37,9 +50,9 @@ function NoteMaker(props) {
 
     // recieve changes from backend through socket io and upate the note
     useEffect(() => {
-        if(socket == null || quill == null) return
+        if (socket == null || quill == null) return
 
-        const handler =  (delta) => {
+        const handler = (delta) => {
             quill.updateContents(delta)
         }
         socket.on('recieve-changes', handler)
@@ -48,6 +61,7 @@ function NoteMaker(props) {
             socket.off('recieve-changes', handler)
         }
     }, [socket, quill])
+    
 
     // function to generate a new note
     const wrapperRef = useCallback(wrapper => {
@@ -57,6 +71,8 @@ function NoteMaker(props) {
         const editor = document.createElement('div')
         wrapper.append(editor)
         const q = new Quill(editor, { theme: "snow", modules: { toolbar: TOOLBAR_OPTIONS }, })
+        q.disable()
+        q.setText('Loading...')
         setQuill(q)
     }, [])
 

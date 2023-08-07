@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import NoteMaker from './NoteMaker';
 import { Add, Remove } from '@mui/icons-material';
 import { v4 as uuidv4 } from 'uuid'; // Import uuid library
+import Navbar from './NavBar'
 
 const AddNote = () => {
     const [zoomLevel, setZoomLevel] = useState(1); // 1 is the default scale (no zoom)
@@ -41,6 +42,9 @@ const AddNote = () => {
 
     return (
         <>
+            <Navbar />
+            <div style={{marginBottom:"100px"}}></div>
+
             <button onClick={handleZoomIn}><Add /></button>{parseInt(zoomLevel * 100)} %
             <button onClick={handleZoomOut}><Remove /></button>
             <div
