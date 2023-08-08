@@ -1,26 +1,23 @@
-import TextEditor from "./TextEditor"
+import './App.css';
+import 'quill/dist/quill.snow.css'
 import {
-  BrowserRouter as Router,
-  Switch,
+  BrowserRouter,
+  Routes,
   Route,
-  Redirect,
-} from "react-router-dom"
-import { v4 as uuidV4 } from "uuid"
-import '../src/app.css'
+  Navigate
+} from 'react-router-dom'
+import { v4 as uuidv4 } from 'uuid'; // Import uuid library
+import TextEditor from './TextEditor';
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/" exact>
-          <Redirect to={`/documents/${uuidV4()}`} />
-        </Route>
-        <Route path="/documents/:id">
-          <TextEditor />
-        </Route>
-      </Switch>
-    </Router>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to={`/documents/${uuidv4()}`}/>} />
+        <Route path="/documents/:id" element={<TextEditor />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
