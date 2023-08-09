@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const Document = require("./model/Document")
+const Note = require("./model/Note")
 
 const connectionParams = {
   useNewUrlParser: true,
@@ -24,16 +24,16 @@ const defaultValue = ""
 
 io.on("connection", socket => {
   socket.on("get-document", async documentId => {
-    const document = await findOrCreateDocument(documentId)
+    const mainDoc = await findOrCreateDocument(documentId)
     socket.join(documentId)
-    socket.emit("load-document", document.data)
+    socket.emit("sync-document", mainDoc.data)
 
     socket.on("send-changes", delta => {
       socket.broadcast.to(documentId).emit("receive-changes", delta)
     })
 
     socket.on("save-document", async data => {
-      await Document.findByIdAndUpdate(documentId, { data })
+      await Note.findByIdAndUpdate(documentId, { data })
     })
   })
 })
@@ -41,7 +41,7 @@ io.on("connection", socket => {
 async function findOrCreateDocument(id) {
   if (id == null) return
 
-  const document = await Document.findById(id)
-  if (document) return document
-  return await Document.create({ _id: id, data: defaultValue })
+  const mainDoc = await Note.findById(id)
+  if (mainDoc) return mainDoc
+  return await Note.create({ _id: id, data: defaultValue })
 }

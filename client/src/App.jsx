@@ -7,14 +7,14 @@ import {
   Navigate
 } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'; // Import uuid library
-import TextEditor from './TextEditor';
+import MainDocument from './MainDocument';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to={`/documents/${uuidv4()}`}/>} />
-        <Route path="/documents/:id" element={<TextEditor />} />
+        <Route path="/documents/:id" element={<MainDocument />} />
       </Routes>
     </BrowserRouter>
   );

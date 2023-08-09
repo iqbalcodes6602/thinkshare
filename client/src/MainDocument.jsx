@@ -1,23 +1,24 @@
-import { useCallback, useEffect, useState } from "react"
-import Quill from "quill"
+import { useParams } from "react-router-dom"
 import "quill/dist/quill.snow.css"
 import { io } from "socket.io-client"
-import { useParams } from "react-router-dom"
+import { useCallback, useEffect, useState } from "react"
+import Quill from "quill"
 
-const SAVE_INTERVAL_MS = 2000
+const SAVE_INTERVAL_MS = 2100
+
 const TOOLBAR_OPTIONS = [
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
     [{ font: [] }],
-    [{ list: "ordered" }, { list: "bullet" }],
     ["bold", "italic", "underline"],
     [{ color: [] }, { background: [] }],
-    [{ script: "sub" }, { script: "super" }],
     [{ align: [] }],
-    ["image", "blockquote", "code-block"],
+    [{ list: "ordered" }, { list: "bullet" }],
     ["clean"],
+    ["image", "blockquote", "code-block"],
+    [{ script: "sub" }, { script: "super" }],
 ]
 
-export default function TextEditor() {
+export default function MainDocument() {
     const { id: documentId } = useParams()
     const [socket, setSocket] = useState()
     const [quill, setQuill] = useState()
@@ -34,8 +35,8 @@ export default function TextEditor() {
     useEffect(() => {
         if (socket == null || quill == null) return
 
-        socket.once("load-document", document => {
-            quill.setContents(document)
+        socket.once("sync-document", mainDoc => {
+            quill.setContents(mainDoc)
             quill.enable()
         })
 
