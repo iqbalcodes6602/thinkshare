@@ -1,18 +1,21 @@
-const Note = require("./model/Note")
-const mongoose = require("mongoose")
+const Note = require("./model/Note");
+const mongoose = require("mongoose");
+require('dotenv').config(); // Load environment variables from .env file
 
-const initialVal = ""
+const initialVal = "";
 
 const connectionParams = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
+
 try {
-  mongoose.connect('mongodb://127.0.0.1:27017/thinkshare', connectionParams);
+  const mongoURL = process.env.MONGO_URL; // Access the environment variable
+  mongoose.connect(mongoURL, connectionParams);
   console.log("Connected to database successfully");
 } catch (error) {
   console.log(error);
-  console.log("Could not connect database!");
+  console.log("Could not connect to the database!");
 }
 
 const io = require("socket.io")(3001, {
