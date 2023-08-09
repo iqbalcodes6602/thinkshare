@@ -5,8 +5,8 @@ import {
   Route,
   Navigate
 } from 'react-router-dom'
-import MainDocument from './MainDocument';
-import './App.css';
+import MainDocument from './components/MainDocument';
+import '../src/styles/App.css';
 import { v4 as uuidv4 } from 'uuid'; // Import uuid library
 
 function App() {
