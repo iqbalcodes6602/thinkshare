@@ -1,3 +1,5 @@
+import './App.css';
+import AddNote from './components/AddNote';
 import 'quill/dist/quill.snow.css'
 import {
   BrowserRouter,
@@ -5,8 +7,6 @@ import {
   Route,
   Navigate
 } from 'react-router-dom'
-import MainDocument from './components/MainDocument';
-import '../src/styles/App.css';
 import { v4 as uuidv4 } from 'uuid'; // Import uuid library
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to={`/documents/${uuidv4()}`}/>} />
-        <Route path="/documents/:id" element={<MainDocument />} />
+        <Route path="/documents/:id" element={<AddNote />} />
       </Routes>
     </BrowserRouter>
   );

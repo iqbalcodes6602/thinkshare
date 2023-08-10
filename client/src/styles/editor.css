@@ -4,18 +4,19 @@
     box-sizing: border-box;
 }
 
-body {
+.container {
     background-color: #F3F3F3;
     margin: 0;
 }
 
 .container .ql-editor {
-    width: 8.5in;
-    min-height: 11in;
-    padding: 1in;
-    margin: 1rem;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
+    resize: both;
+    padding: 0.5rem;
+    min-height: 200px;
+    min-width: 100%;
+    box-shadow: 0 0 5px 0 rgb(115 104 104 / 50%);
     background-color: white;
+    border-radius: 0 0 0.2rem 0.2rem;
 }
 
 .container .ql-container.ql-snow {
@@ -32,7 +33,9 @@ body {
     z-index: 1;
     background-color: #F3F3F3;
     border: none;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
+    box-shadow: 0 0 5px 0 rgb(115 104 104 / 50%);
+    border-radius:  0.2rem 0.2rem 0 0;
+    position: relative;
 }
 
 @page {
