@@ -1,4 +1,3 @@
-import TextEditor from "./TextEditor"
 import {
   BrowserRouter,
   Route,
@@ -6,7 +5,7 @@ import {
   Navigate,
 } from "react-router-dom"
 import { v4 as uuidV4 } from "uuid"
-import MainText from "./MainText"
+import MainText from "./components/MainText"
 
 function App() {
   return (
