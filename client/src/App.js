@@ -12,7 +12,6 @@ function App() {
     <BrowserRouter>
     <Routes>
         <Route path="/" element={<Navigate to={`/documents/${uuidV4()}`}/>} />
-        {/* <Route path="/documents/:id" element={<TextEditor noteId ={`${uuidV4()}`} />} /> */}
         <Route path="/documents/:id" element={<MainText />} />
     </Routes>
     </BrowserRouter>

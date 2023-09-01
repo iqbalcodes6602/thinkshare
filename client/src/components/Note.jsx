@@ -113,13 +113,11 @@ export default function TextEditor({ noteId, note, handleDelete, onNoteDrag }) {
 
 
   return (
-    // <div className="container" ref={wrapperRef}></div>
     <Draggable
       axis="both"
       handle=".draggingHandle"
       position={null}
       scale={1}
-      // defaultPosition={{ x: 100, y: 100 }}
       defaultPosition={{ x: note?.x, y: note?.y }} // Set the initial position based on note data
       onDrag={handleDrag}
     >

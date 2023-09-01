@@ -1,20 +1,3 @@
-// import React from 'react'
-// import TextEditor from './TextEditor'
-// import { v4 as uuidV4 } from "uuid"
-
-// function MainText() {
-//   return (
-//     <>
-//     {/* <TextEditor noteId ={`${uuidV4()}`} />
-//     <TextEditor noteId ={`${uuidV4()}`} /> */}
-//     <TextEditor noteId ='1' />
-//     <TextEditor noteId ='2' />
-//     </>
-//   )
-// }
-
-// export default MainText
-
 
 import React, { useEffect, useState } from 'react';
 import { Add, Remove } from '@mui/icons-material';
@@ -53,17 +36,10 @@ const AddNote = () => {
     }, [socket, pageId])
 
     useEffect(() => {
-        // Retrieve the notes object from local storage based on the document ID
-        // const storedNotesObject = localStorage.getItem(pageId);
         if (socket == null) return
         socket.once("fetch-notes", mainNote => {
             setNotes(mainNote.notes)
         })
-        // console.log('storedNotesObject', storedNotesObject)
-        // if (storedNotesObject) {
-        //     const parsedNotesObject = JSON.parse(storedNotesObject);
-        //     setNotes(parsedNotesObject.notes);
-        // }
         console.log("notes", notes)
     }, [pageId, notes]);
 
@@ -85,8 +61,6 @@ const AddNote = () => {
 
         socket.emit("send-updated-notes", notesObject)
 
-        // Store the notes object in local storage
-        // localStorage.setItem(pageId, JSON.stringify(notesObject));
     };
 
     useEffect(() => {
@@ -106,19 +80,6 @@ const AddNote = () => {
             socket.off(`receive-updated-notes-${pageId}`, handler);
         };
     }, [socket, notes, pageId]);
-
-    // useEffect(() => {
-    //     if (socket == null) return
-
-    //     const interval = setInterval(() => {
-    //         socket.emit("save-notes")
-    //     }, 2000)
-
-    //     return () => {
-    //         clearInterval(interval)
-    //     }
-    // }, [socket, notes])
-
 
     const handleZoomIn = () => {
         setZoomLevel(prevZoom => prevZoom + 0.1); // Increase the zoom level by 0.1
@@ -145,7 +106,6 @@ const AddNote = () => {
             notes: updatedNotes,
         };
         socket.emit("send-updated-notes", notesObject)
-        // localStorage.setItem(pageId, JSON.stringify(notesObject));
     };
 
 
@@ -158,10 +118,6 @@ const AddNote = () => {
                     key={note.id}
                     style={{ transform: `translate(${note.x}px, ${note.y}px)` }}
                 >
-                    {/* <NoteMaker
-                    note={note}
-                    onNoteDrag={handleNoteDrag}
-                /> */}
                     <TextEditor
                         note={note}
                         noteId={note.id}

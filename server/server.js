@@ -44,14 +44,12 @@ io.on("connection", socket => {
   socket.on("user-connected", async (pageId) => {
     console.log('user connected => ', pageId)
     const mainNote = await findOrCreateMainNote(pageId)
-    console.log(mainNote)
+    // console.log(mainNote)
     socket.join(mainNote)
     socket.emit("fetch-notes", mainNote)
     socket.on("send-updated-notes", notesObject => {
-      console.log('notes object from server $$$$$$$$', notesObject)
-      // socket.broadcast.to(notesObject.id).emit("receive-updated-notes", notesObject)
-      // io.emit("receive-updated-notes", notesObject);
-      console.log(`receive-updated-notes-${pageId}`)
+      // console.log('notes object from server $$$$$$$$', notesObject)
+      // console.log(`receive-updated-notes-${pageId}`)
       io.emit(`receive-updated-notes-${pageId}`, notesObject);
     })
     socket.on("save-notes", async notesObject => {
