@@ -132,9 +132,6 @@ const MainText = () => {
     };
 
     const handleDelete = (id) => {
-        // setNotes((prevNotes) => {
-        //     // return prevNotes.filter((note) => note.id !== id);
-        // });
         if (notes.length <= 1) return
         const notesObject = {
             id: pageId,
