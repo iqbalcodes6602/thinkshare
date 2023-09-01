@@ -75,7 +75,7 @@ async function findOrCreateMainNote(id) {
 
   const newNote = {
     id: uuid.v4(),
-    x: 100,
+    x: 200,
     y: 100
   };
   const initalNotesArray = [newNote];

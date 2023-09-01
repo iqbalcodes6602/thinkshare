@@ -47,7 +47,7 @@ const MainText = () => {
     const handleButtonClick = () => {
         const newNote = {
             id: uuidv4(),
-            x: 100,
+            x: 200,
             y: 100
         };
         const newNotesArray = [...notes, newNote];
@@ -150,16 +150,16 @@ const MainText = () => {
                 <div class="menu">
                     <ul>
                         <li>
-                            <button onClick={handleZoomIn}><Add /></button>
+                            <button onClick={handleButtonClick}><AddToPhotos /> </button>
                         </li>
-                        <li style={{fontWeight: "700", fontSize: "18px"}}>
+                        <li>
+                            <button style={{borderRadius: "50% 50% 0 0"}} onClick={handleZoomIn}><Add /></button>
+                        </li>
+                        <li style={{ fontWeight: "700", fontSize: "18px", height:"25px" }}>
                             {parseInt(zoomLevel * 100)}%
                         </li>
                         <li>
-                            <button onClick={handleZoomOut}><Remove /></button>
-                        </li>
-                        <li>
-                            <button onClick={handleButtonClick}><AddToPhotos /> </button>
+                            <button style={{borderRadius: "0 0 50% 50%"}} onClick={handleZoomOut}><Remove /></button>
                         </li>
                     </ul>
                 </div>
