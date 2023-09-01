@@ -48,7 +48,7 @@ io.on("connection", socket => {
     socket.join(mainNote)
     socket.emit("fetch-notes", mainNote)
     socket.on("send-updated-notes", notesObject => {
-      // console.log('notes object from server $$$$$$$$', notesObject)
+      console.log('notes object from server $$$$$$$$', notesObject)
       // console.log(`receive-updated-notes-${pageId}`)
       io.emit(`receive-updated-notes-${pageId}`, notesObject);
     })

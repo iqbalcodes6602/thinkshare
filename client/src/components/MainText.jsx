@@ -132,9 +132,14 @@ const MainText = () => {
     };
 
     const handleDelete = (id) => {
-        setNotes((prevNotes) => {
-            return prevNotes.filter((note) => note.id !== id);
-        });
+        // setNotes((prevNotes) => {
+        //     // return prevNotes.filter((note) => note.id !== id);
+        // });
+        const notesObject = {
+            id : pageId,
+            notes: notes.filter((note) => note.id !== id)
+        }
+        socket.emit("send-updated-notes", notesObject)
     };
 
     return (
