@@ -24,9 +24,9 @@ export default function TextEditor({ noteId, note, handleDelete, onNoteDrag }) {
   const [socket, setSocket] = useState()
   const [quill, setQuill] = useState()
 
-  useEffect(() => {
-    alert(noteId)
-  }, [])
+  // useEffect(() => {
+  //   alert(noteId)
+  // }, [])
   useEffect(() => {
     const s = io("http://localhost:3001")
     setSocket(s)

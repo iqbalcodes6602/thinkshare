@@ -1,13 +1,14 @@
 
 import React, { useEffect, useState } from 'react';
-import { Add, Remove } from '@mui/icons-material';
+import { Add, AddToPhotos, Remove } from '@mui/icons-material';
 import { v4 as uuidv4 } from 'uuid'; // Import uuid library
 import { useParams } from 'react-router-dom';
-import TextEditor from './Note';
+import Note from './Note';
 import { io } from "socket.io-client"
+import '../styles/navbarstyle.css'
 
-const AddNote = () => {
-    const [zoomLevel, setZoomLevel] = useState(1); // 1 is the default scale (no zoom)
+const MainText = () => {
+    const [zoomLevel, setZoomLevel] = useState(0.5); // 1 is the default scale (no zoom)
     const [notes, setNotes] = useState([]);
     const { id: pageId } = useParams()
     const [socket, setSocket] = useState()
@@ -118,7 +119,7 @@ const AddNote = () => {
                     key={note.id}
                     style={{ transform: `translate(${note.x}px, ${note.y}px)` }}
                 >
-                    <TextEditor
+                    <Note
                         note={note}
                         noteId={note.id}
                         handleDelete={handleDelete}
@@ -138,18 +139,33 @@ const AddNote = () => {
 
     return (
         <>
-            <button onClick={handleZoomIn}><Add /></button>{parseInt(zoomLevel * 100)} %
-            <button onClick={handleZoomOut}><Remove /></button>
             <div
                 style={{ transform: `scale(${zoomLevel})`, transformOrigin: '0 0', display: "flex" }}
             >
-                <button onClick={handleButtonClick}>Generate Div</button>
                 {
                     notes && generateDivs()
                 }
+            </div>
+            <div class="card">
+                <div class="menu">
+                    <ul>
+                        <li>
+                            <button onClick={handleZoomIn}><Add /></button>
+                        </li>
+                        <li style={{fontWeight: "700", fontSize: "18px"}}>
+                            {parseInt(zoomLevel * 100)}%
+                        </li>
+                        <li>
+                            <button onClick={handleZoomOut}><Remove /></button>
+                        </li>
+                        <li>
+                            <button onClick={handleButtonClick}><AddToPhotos /> </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </>
     );
 };
 
-export default AddNote;
+export default MainText;
