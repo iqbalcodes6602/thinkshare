@@ -135,8 +135,9 @@ const MainText = () => {
         // setNotes((prevNotes) => {
         //     // return prevNotes.filter((note) => note.id !== id);
         // });
+        if (notes.length <= 1) return
         const notesObject = {
-            id : pageId,
+            id: pageId,
             notes: notes.filter((note) => note.id !== id)
         }
         socket.emit("send-updated-notes", notesObject)
@@ -158,13 +159,13 @@ const MainText = () => {
                             <button onClick={handleButtonClick}><AddToPhotos /> </button>
                         </li>
                         <li>
-                            <button style={{borderRadius: "50% 50% 0 0"}} onClick={handleZoomIn}><Add /></button>
+                            <button style={{ borderRadius: "50% 50% 0 0" }} onClick={handleZoomIn}><Add /></button>
                         </li>
-                        <li style={{ fontWeight: "700", fontSize: "18px", height:"25px" }}>
+                        <li style={{ fontWeight: "700", fontSize: "18px", height: "25px" }}>
                             {parseInt(zoomLevel * 100)}%
                         </li>
                         <li>
-                            <button style={{borderRadius: "0 0 50% 50%"}} onClick={handleZoomOut}><Remove /></button>
+                            <button style={{ borderRadius: "0 0 50% 50%" }} onClick={handleZoomOut}><Remove /></button>
                         </li>
                     </ul>
                 </div>
