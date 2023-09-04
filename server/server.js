@@ -11,15 +11,18 @@ const connectionParams = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
-try {
-  
-  mongoose.connect(mongoURI, connectionParams);
-  // mongoose.connect('mongodb://127.0.0.1:27017/thinkshare', connectionParams);
-  console.log("Connected to database successfully");
-} catch (error) {
-  console.log(error);
-  console.log("Could not connect database!");
-}
+// mongoose.connect('mongodb://127.0.0.1:27017/thinkshare', connectionParams);
+// Replace 'mongoURI' with your actual MongoDB URI
+mongoose.connect(mongoURI, connectionParams);
+const db = mongoose.connection;
+db.on('error', (err) => {
+  console.error('MongoDB connection error:', err);
+  // You can take additional actions here if needed
+});
+db.once('open', () => {
+  console.log('Connected to MongoDB successfully');
+  // You can start your application logic here
+});
 
 const io = require("socket.io")(3001, {
   cors: {
