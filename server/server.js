@@ -2,12 +2,19 @@ const mongoose = require("mongoose")
 const Document = require("./models/Document");
 const MainNote = require("./models/MainNote");
 const uuid = require('uuid');
+
+require('dotenv').config();
+
+const mongoURI = process.env.MONGO_URI;
+
 const connectionParams = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
 try {
-  mongoose.connect('mongodb://127.0.0.1:27017/thinkshare', connectionParams);
+  
+  mongoose.connect(mongoURI, connectionParams);
+  // mongoose.connect('mongodb://127.0.0.1:27017/thinkshare', connectionParams);
   console.log("Connected to database successfully");
 } catch (error) {
   console.log(error);
