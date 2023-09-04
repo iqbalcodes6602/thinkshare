@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom"
 import Draggable from 'react-draggable';
 import { Delete, DragIndicator } from "@mui/icons-material"
 
+
 const SAVE_INTERVAL_MS = 2000
 
 const TOOLBAR_OPTIONS = [
@@ -19,16 +20,20 @@ const TOOLBAR_OPTIONS = [
 
 export default function TextEditor({ noteId, note, handleDelete, onNoteDrag }) {
   const { id: pageId } = useParams()
-
+  
   const documentId = noteId
   const [socket, setSocket] = useState()
   const [quill, setQuill] = useState()
-
+  
   // useEffect(() => {
-  //   alert(noteId)
-  // }, [])
-  useEffect(() => {
-    const s = io("http://localhost:3001")
+    //   alert(noteId)
+    // }, [])
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+    useEffect(() => {
+      
+      const s = io(backendUrl)
+      // const s = io("https://think-share-backend.onrender.com")
+    // const s = io("http://localhost:3001")
     setSocket(s)
 
     return () => {

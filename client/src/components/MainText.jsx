@@ -13,10 +13,14 @@ const MainText = () => {
     const { id: pageId } = useParams()
     const [socket, setSocket] = useState()
     // console.log(pageId)
-
+    
     // socket io conenction establishment
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+    console.log(backendUrl)
     useEffect(() => {
-        const s = io("http://localhost:3001")
+        const s = io(backendUrl)
+        // const s = io("https://think-share-backend.onrender.com")
+        // const s = io("http://localhost:3001")
         setSocket(s)
 
         return () => {
