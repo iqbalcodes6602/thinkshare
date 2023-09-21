@@ -129,8 +129,8 @@ export default function TextEditor({ noteId, note, handleDelete, onNoteDrag }) {
     >
       <div style={{ padding: "0", width: "auto", height: "60vh", position: "absolute" }} >
         <span id="buttons">
-          <DragIndicator style={{ cursor: "all-scroll" }} className='draggingHandle' />
-          <Delete style={{ cursor: "pointer" }} onClick={() => handleDelete(noteId)}>Delete</Delete>
+          <DragIndicator style={{ cursor: "all-scroll", color:"#4a4a4a" }} className='draggingHandle' />
+          <Delete style={{ cursor: "pointer", color:"#4a4a4a" }} onClick={() => handleDelete(noteId)}>Delete</Delete>
         </span>
 
         <div className="container" ref={wrapperRef} style={{ width: "auto", height: "auto", position: "absolute" }}></div>
