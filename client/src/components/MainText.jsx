@@ -52,7 +52,8 @@ const MainText = () => {
         const newNote = {
             id: uuidv4(),
             x: 200,
-            y: 100
+            y: 100,
+            background: getRandomColor()
         };
         const newNotesArray = [...notes, newNote];
         setNotes(newNotesArray);
@@ -113,7 +114,12 @@ const MainText = () => {
         socket.emit("send-updated-notes", notesObject)
     };
 
-
+    const colors = ["#9BEDFD", "#D8D0FE", "#FEE33A", "#FEC0D9"];
+    const getRandomColor = () => {
+      const randomIndex = Math.floor(Math.random() * colors.length);
+      return colors[(notes.length)%4];
+    };
+    
 
     const generateDivs = () => {
         if (notes) {

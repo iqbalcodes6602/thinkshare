@@ -83,10 +83,18 @@ async function findOrCreateMainNote(id) {
   const mainNote = await MainNote.findById(id)
   if (mainNote) return mainNote
 
+  const colors = ["#9BEDFD", "#D8D0FE", "#FEE33A", "#FEC0D9"];
+
+  const getRandomColor = () => {
+    const randomIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomIndex];
+  };
+
   const newNote = {
     id: uuid.v4(),
     x: 200,
-    y: 100
+    y: 100,
+    background: getRandomColor()
   };
   const initalNotesArray = [newNote];
 

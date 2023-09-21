@@ -133,7 +133,7 @@ export default function TextEditor({ noteId, note, handleDelete, onNoteDrag }) {
           <Delete style={{ cursor: "pointer", color:"#4a4a4a" }} onClick={() => handleDelete(noteId)}>Delete</Delete>
         </span>
 
-        <div className="container" ref={wrapperRef} style={{ width: "auto", height: "auto", position: "absolute" }}></div>
+        <div className="container" ref={wrapperRef} style={{ width: "auto", height: "auto", position: "absolute", backgroundColor:note.background }}></div>
       </div>
     </Draggable>
   )

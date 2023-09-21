@@ -19,7 +19,7 @@ body {
 .container .ql-editor {
   resize: both;
   padding: 0.5rem;
-  
+
   min-height: 200px;
   min-width: 180px;
 
@@ -29,7 +29,8 @@ body {
   max-height: 500px;
   max-width: 500px;
   /* box-shadow: 0 0 5px 0 rgb(115 104 104 / 50%); */
-  background-color: #9BEDFD;
+  /* background-color: #9BEDFD; */
+  background-color: transparent;
   border-radius: 0 0 0.2rem 0.2rem;
 }
 
