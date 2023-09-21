@@ -8,12 +8,12 @@ import { io } from "socket.io-client"
 import '../styles/navbarstyle.css'
 
 const MainText = () => {
-    const [zoomLevel, setZoomLevel] = useState(0.5); // 1 is the default scale (no zoom)
+    const [zoomLevel, setZoomLevel] = useState(1); // 1 is the default scale (no zoom)
     const [notes, setNotes] = useState([]);
     const { id: pageId } = useParams()
     const [socket, setSocket] = useState()
     // console.log(pageId)
-    
+
     // socket io conenction establishment
     const backendUrl = process.env.REACT_APP_BACKEND_URL;
     console.log(backendUrl)
@@ -103,7 +103,7 @@ const MainText = () => {
             return note;
         });
 
-        setNotes(updatedNotes);
+        // setNotes(updatedNotes);
 
         // Update local storage with the updated notes
         const notesObject = {

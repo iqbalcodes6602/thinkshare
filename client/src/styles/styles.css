@@ -19,31 +19,42 @@ body {
   resize: both;
   padding: 0.5rem;
   min-height: 200px;
-  min-width: 100%;
-  /* max-height: 500px;
-  max-width: 500px; */
+  min-width: 180px;
+  max-height: 500px;
+  max-width: 500px;
   box-shadow: 0 0 5px 0 rgb(115 104 104 / 50%);
   background-color: white;
   border-radius: 0 0 0.2rem 0.2rem;
 }
 
-.container .ql-container.ql-snow {
+.container .ql-container.ql-bubble {
   border: none;
   display: flex;
   justify-content: center;
 }
 
-.container .ql-toolbar.ql-snow {
+.container .ql-toolbar{
+  width: 332px;
   display: flex;
-  justify-content: center;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background-color: #F3F3F3;
-  border: none;
-  box-shadow: 0 0 5px 0 rgb(115 104 104 / 50%);
-  border-radius: 0.2rem 0.2rem 0 0;
-  position: relative;
+  border-radius: 21px;
+  border: 1px solid #DDD;
+  background: rgba(108, 108, 108, 0.52);    
+  box-shadow: 0px -2px 27px -10px rgba(0, 0, 0, 0.21);
+  backdrop-filter: blur(10px);
+}
+
+
+.ql-bubble .ql-tooltip{
+  background-color: transparent;
+}
+
+.react-draggable:hover #buttons{
+  opacity: 1;
+}
+
+#buttons{
+  opacity: 0;
+  display: flex;
 }
 
 @page {
@@ -64,7 +75,7 @@ body {
     align-self: flex-start;
   }
 
-  .container .ql-toolbar.ql-snow {
+  .container .ql-toolbar.ql-bubble {
     display: none;
   }
 }

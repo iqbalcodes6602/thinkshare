@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import Quill from "quill"
-import "quill/dist/quill.snow.css"
+// import "quill/dist/quill.snow.css"
+import "quill/dist/quill.bubble.css"
 import { io } from "socket.io-client"
 import { useParams } from "react-router-dom"
 import Draggable from 'react-draggable';
@@ -98,7 +99,7 @@ export default function TextEditor({ noteId, note, handleDelete, onNoteDrag }) {
     const editor = document.createElement("div")
     wrapper.append(editor)
     const q = new Quill(editor, {
-      theme: "snow",
+      theme: "bubble",
       modules: { toolbar: TOOLBAR_OPTIONS },
     })
     q.disable()
@@ -127,9 +128,10 @@ export default function TextEditor({ noteId, note, handleDelete, onNoteDrag }) {
       onDrag={handleDrag}
     >
       <div style={{ padding: "0", width: "auto", height: "60vh", position: "absolute" }} >
-        <DragIndicator style={{ cursor: "all-scroll" }} className='draggingHandle' />
-
-        <Delete style={{ cursor: "pointer" }} onClick={() => handleDelete(noteId)}>Delete</Delete>
+        <span id="buttons">
+          <DragIndicator style={{ cursor: "all-scroll" }} className='draggingHandle' />
+          <Delete style={{ cursor: "pointer" }} onClick={() => handleDelete(noteId)}>Delete</Delete>
+        </span>
 
         <div className="container" ref={wrapperRef} style={{ width: "auto", height: "auto", position: "absolute" }}></div>
       </div>
