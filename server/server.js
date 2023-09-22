@@ -92,8 +92,8 @@ async function findOrCreateMainNote(id) {
 
   const newNote = {
     id: uuid.v4(),
-    x: 0,
-    y: 0,
+    x: -100,
+    y: -100,
     background: getRandomColor()
   };
   const initalNotesArray = [newNote];

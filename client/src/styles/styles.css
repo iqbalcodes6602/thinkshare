@@ -11,6 +11,10 @@ body {
   background-size: cover;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 .container {
   background-color: #F3F3F3;
   margin: 0;
@@ -32,7 +36,31 @@ body {
   /* background-color: #9BEDFD; */
   background-color: transparent;
   border-radius: 0 0 0.2rem 0.2rem;
+  
 }
+
+
+
+.container .ql-editor::-webkit-scrollbar {
+  width: 0px;
+}
+.container .ql-editor:hover::-webkit-scrollbar  {
+  width: 10px;
+}
+/* Track */
+.container .ql-editor::-webkit-scrollbar-track {
+  background: transparent;
+}
+/* Handle */
+.container .ql-editor::-webkit-scrollbar-thumb {
+  background: #68686833;
+}
+/* Handle on hover */
+/* .container .ql-editor::-webkit-scrollbar-thumb:hover {
+  background: #555;
+} */
+
+
 
 .container .ql-container.ql-bubble {
   border: none;
