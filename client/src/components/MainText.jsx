@@ -8,7 +8,7 @@ import { io } from "socket.io-client"
 import '../styles/navbarstyle.css'
 
 const MainText = () => {
-    const [zoomLevel, setZoomLevel] = useState(0.7); // 1 is the default scale (no zoom)
+    const [zoomLevel, setZoomLevel] = useState(0.8); // 1 is the default scale (no zoom)
     const [notes, setNotes] = useState([]);
     const { id: pageId } = useParams()
     const [socket, setSocket] = useState()
