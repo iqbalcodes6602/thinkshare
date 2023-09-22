@@ -8,7 +8,7 @@ import { io } from "socket.io-client"
 import '../styles/navbarstyle.css'
 
 const MainText = () => {
-    const [zoomLevel, setZoomLevel] = useState(1); // 1 is the default scale (no zoom)
+    const [zoomLevel, setZoomLevel] = useState(0.7); // 1 is the default scale (no zoom)
     const [notes, setNotes] = useState([]);
     const { id: pageId } = useParams()
     const [socket, setSocket] = useState()
@@ -51,8 +51,8 @@ const MainText = () => {
     const handleButtonClick = () => {
         const newNote = {
             id: uuidv4(),
-            x: 200,
-            y: 100,
+            x: -100,
+            y: -100,
             background: getRandomColor()
         };
         const newNotesArray = [...notes, newNote];
@@ -116,10 +116,9 @@ const MainText = () => {
 
     const colors = ["#9BEDFD", "#D8D0FE", "#FEE33A", "#FEC0D9"];
     const getRandomColor = () => {
-      const randomIndex = Math.floor(Math.random() * colors.length);
-      return colors[(notes.length)%4];
+        return colors[(notes.length) % 4];
     };
-    
+
 
     const generateDivs = () => {
         if (notes) {
@@ -153,7 +152,15 @@ const MainText = () => {
     return (
         <>
             <div
-                style={{ transform: `scale(${zoomLevel})`, transformOrigin: '0 0', display: "flex" }}
+                style={{
+                    transform: `scale(${zoomLevel})`,
+                    transformOrigin: 'center center', // Center the transform origin
+                    display: "flex",
+                    justifyContent: "center", // Horizontally center the content
+                    alignItems: "center", // Vertically center the content
+                    height: "100vh", // Set the container height to 100% of the viewport height
+                    width: "100%", // Set the container width to 100%
+                }}
             >
                 {
                     notes && generateDivs()
