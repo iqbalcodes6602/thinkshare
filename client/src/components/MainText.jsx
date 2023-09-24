@@ -173,13 +173,17 @@ const MainText = () => {
                             <button onClick={handleButtonClick}><AddToPhotos /> </button>
                         </li>
                         <li>
-                            <button style={{ borderRadius: "50% 50% 0 0" }} onClick={handleZoomIn}><Add /></button>
+                            <button style={{ borderRadius: "15px 15px 0 0" }} onClick={handleZoomIn}><Add /></button>
                         </li>
-                        <li style={{ fontWeight: "700", fontSize: "18px", height: "25px" }}>
+                        <li style={{ 
+                            fontWeight: "700",
+                            height: '30px',
+                            fontFamily: "Lucida Console, monospace"
+                         }}>
                             {parseInt(zoomLevel * 100)}%
                         </li>
                         <li>
-                            <button style={{ borderRadius: "0 0 50% 50%" }} onClick={handleZoomOut}><Remove /></button>
+                            <button style={{ borderRadius: "0 0 15px 15px" }} onClick={handleZoomOut}><Remove /></button>
                         </li>
                     </ul>
                 </div>
