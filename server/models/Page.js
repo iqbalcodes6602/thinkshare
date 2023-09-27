@@ -1,8 +1,8 @@
 const { Schema, model } = require("mongoose");
 
-const MainNote = new Schema({
+const Page = new Schema({
   _id: String,
   notes: Array, // Add this field to the schema
 });
 
-module.exports = model("MainNote", MainNote);
+module.exports = model("Page", Page);

@@ -22,7 +22,7 @@ const TOOLBAR_OPTIONS = [
 export default function TextEditor({ noteId, note, handleDelete, onNoteDrag }) {
   const { id: pageId } = useParams()
   
-  const documentId = noteId
+  const stickyNoteId = noteId
   const [socket, setSocket] = useState()
   const [quill, setQuill] = useState()
   
@@ -50,8 +50,8 @@ export default function TextEditor({ noteId, note, handleDelete, onNoteDrag }) {
       quill.enable()
     })
 
-    socket.emit("get-document", { documentId, pageId })
-  }, [socket, quill, documentId])
+    socket.emit("get-document", { stickyNoteId, pageId })
+  }, [socket, quill, stickyNoteId])
 
   useEffect(() => {
     if (socket == null || quill == null) return
