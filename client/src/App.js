@@ -42,8 +42,10 @@ function App() {
             color: '#3f3f3f',
             boxShadow: '0px 0px 20px 0px #353535',
           }}>
-          Currently our website is testing phase and is deployed on free hoosting servers. So, it may take some time to load (1-2 min max). Please be patient.<br />
-          <center><button onClick={()=>{setShow(false)}}>Continue</button></center>
+          Dear Users,<br />
+          Our website is currently in the testing phase and hosted on a free platform. Please expect a brief loading time, up to 1-2 minutes. We appreciate your patience. Thank You!
+          <br />
+          <center><button onClick={() => { setShow(false) }}>Continue</button></center>
         </div>
       </div >
 
