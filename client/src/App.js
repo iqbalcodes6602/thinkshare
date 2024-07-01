@@ -9,7 +9,13 @@ import { FaTrash } from 'react-icons/fa';
 import { TbSquareRoundedPlusFilled } from 'react-icons/tb';
 import { v4 as uuidv4 } from 'uuid';
 
-const socket = io(process.env.REACT_APP_BACKEND_URL);
+const socket = io(process.env.REACT_APP_BACKEND_URL)
+  .on('connect', () => {
+    console.log('Connection successful!');
+  })
+  .on('connect_error', (err) => {
+    console.error('Now I am unable to debug the code:', err);
+  });
 
 function App() {
   const [notes, setNotes] = useState([]);
