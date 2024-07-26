@@ -14,7 +14,7 @@ const socket = io(process.env.REACT_APP_BACKEND_URL)
     console.log('Connection successful!');
   })
   .on('connect_error', (err) => {
-    console.error('Now I am unable to debug the code:', err);
+    console.error('Socket server connection error: ', err);
   });
 
 function App() {
