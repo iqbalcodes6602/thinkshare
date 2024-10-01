@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  # MongoDB Container
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  # React App Client Container
+  client:
+    build:
+      context: ./client
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_BACKEND_URL=http://localhost/api
+    depends_on:
+      - server
+
+  # Node.js Backend Container
+  server:
+    build:
+      context: ./server
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/mydatabase
+      - PORT=5000
+    depends_on:
+      - mongo
+
+  # Nginx Proxy Container
+  proxy:
+    build:
+      context: ./proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - client
+      - server
+
+volumes:
+  mongo_data:
