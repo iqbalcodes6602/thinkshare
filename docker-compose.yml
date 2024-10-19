@@ -13,7 +13,7 @@ services:
     build:
       context: ./client
     container_name: client
-    image: iqbalcodes6602/thinkshare-client:latest
+    image: iqbalcodes6602/thinkshare-client:prod-v2
     ports:
       - "80"
     environment:
@@ -25,7 +25,7 @@ services:
     build:
       context: ./server
     container_name: server
-    image: iqbalcodes6602/thinkshare-server:latest
+    image: iqbalcodes6602/thinkshare-server:prod-v2
     ports:
       - "5000"
     environment:
@@ -38,7 +38,7 @@ services:
     build:
       context: ./proxy
     container_name: proxy
-    image: iqbalcodes6602/thinkshare-proxy:latest
+    image: iqbalcodes6602/thinkshare-proxy:prod-v2
     ports:
       - "80:80"
     depends_on:

@@ -62,11 +62,13 @@ db.once('open', () => {
 
         socket.on('updateNote', async (updatedNote) => {
             try {
-                io.to(updatedNote.roomId).emit('updateNote', updatedNote); // Broadcast to room
+                await Note.findByIdAndUpdate(updatedNote._id, updatedNote, { new: true }); // Save the new position in the database
+                io.to(updatedNote.roomId).emit('updateNote', updatedNote); // Broadcast to all clients in the room
             } catch (err) {
                 console.error(err);
             }
         });
+
 
         socket.on('saveNote', async (updatedNote) => {
             try {

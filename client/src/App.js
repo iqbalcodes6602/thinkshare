@@ -10,7 +10,7 @@ import { TbSquareRoundedPlusFilled } from 'react-icons/tb';
 import { v4 as uuidv4 } from 'uuid';
 
 const socket = io(process.env.REACT_APP_BACKEND_URL)
-  .on('connect', () => {
+  .on('connect test2', () => {
     console.log('Connection successful!');
   })
   .on('connect_error', (err) => {
@@ -84,19 +84,25 @@ function App() {
   };
 
   const updateNotePosition = (id, x, y) => {
+    setNotes((prevNotes) =>
+      prevNotes.map((note) =>
+        note._id === id ? { ...note, position: { x, y } } : note
+      )
+    );
+  };
+
+  const saveNotePosition = (id, x, y) => {
     const updatedNote = notes.find((note) => note._id === id);
     if (updatedNote) {
-      updatedNote.position = { x, y };
-      socket.emit('updateNote', updatedNote);
+      const noteWithNewPosition = {
+        ...updatedNote,
+        position: { x, y }
+      };
+      socket.emit('updateNote', noteWithNewPosition); // Emit to the server with the updated position
     }
   };
 
-  const saveNotePosition = (id) => {
-    const updatedNote = notes.find((note) => note._id === id);
-    if (updatedNote) {
-      socket.emit('saveNote', updatedNote);
-    }
-  };
+
 
   function debounce(func, wait) {
     let timeout;
@@ -127,9 +133,10 @@ function App() {
             key={note._id}
             position={{ x: note.position.x, y: note.position.y }}
             onDrag={(e, data) => updateNotePosition(note._id, data.x, data.y)}
-            onStop={() => saveNotePosition(note._id)}
+            onStop={(e, data) => saveNotePosition(note._id, data.x, data.y)}
             handle='.draggingHandle'
           >
+
             <div className='note'>
               <span id='buttons'>
                 <MdDragIndicator style={{ cursor: 'all-scroll', color: '#4a4a4a' }} className='draggingHandle' />
