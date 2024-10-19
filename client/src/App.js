@@ -10,7 +10,7 @@ import { TbSquareRoundedPlusFilled } from 'react-icons/tb';
 import { v4 as uuidv4 } from 'uuid';
 
 const socket = io(process.env.REACT_APP_BACKEND_URL)
-  .on('connect test2', () => {
+  .on('connect', () => {
     console.log('Connection successful!');
   })
   .on('connect_error', (err) => {
@@ -102,13 +102,23 @@ function App() {
     }
   };
 
-  const updateNoteContent = (id, content) => {
+
+
+  function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  }
+
+  const updateNoteContent = debounce((id, content) => {
     const updatedNote = notes.find((note) => note._id === id);
     if (updatedNote) {
       updatedNote.content = content;
       socket.emit('updateNoteContent', updatedNote);
     }
-  };
+  }, 300);
 
   const deleteNote = (id) => {
     socket.emit('deleteNote', id, roomId);
