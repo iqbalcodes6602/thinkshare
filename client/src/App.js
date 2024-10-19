@@ -102,23 +102,13 @@ function App() {
     }
   };
 
-
-
-  function debounce(func, wait) {
-    let timeout;
-    return function (...args) {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), wait);
-    };
-  }
-
-  const updateNoteContent = debounce((id, content) => {
+  const updateNoteContent = (id, content) => {
     const updatedNote = notes.find((note) => note._id === id);
     if (updatedNote) {
       updatedNote.content = content;
       socket.emit('updateNoteContent', updatedNote);
     }
-  }, 300);
+  };
 
   const deleteNote = (id) => {
     socket.emit('deleteNote', id, roomId);
