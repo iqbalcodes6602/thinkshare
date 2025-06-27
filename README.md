@@ -4,6 +4,10 @@ visit here - https://thinkshare.azurewebsites.net/
  
 https://github.com/user-attachments/assets/6c32e84a-7f7b-43be-b6c1-41b7b0255c2f
 
+# Architecture
+![thinkshare](https://github.com/user-attachments/assets/219d0333-aa71-4914-9ca1-2cc5f57f5a38)
+
+
 ![ThinkShare](design/image.png)
 
 - [ThinkShare - Saas Project](#thinkshare---saas-project)
